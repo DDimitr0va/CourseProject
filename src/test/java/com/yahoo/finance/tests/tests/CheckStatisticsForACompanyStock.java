@@ -16,7 +16,7 @@ import java.io.IOException;
 
 @Slf4j
 
-public class CheckStatisticsForACompanyStock extends TestUtils{
+public class CheckStatisticsForACompanyStock extends TestUtils {
 
     @DataProvider(name = "company-data")
     public static Object[][] dataProviderFromCsvFile() throws IOException, CsvException {
@@ -24,31 +24,26 @@ public class CheckStatisticsForACompanyStock extends TestUtils{
     }
 
     @Test(dataProvider = "company-data")
-    public void executeCheckStatisticsTest(String companyName, String companyDividend, String priceBookCurrentValue){
-        AcceptCookies acceptCookies=new AcceptCookies(driver);
-        SearchPage searchPage=new SearchPage(driver);
-        SummaryPage summaryPage=new SummaryPage(driver);
-        StatisticsPage statisticsPage=new StatisticsPage(driver);
+    public void executeCheckStatisticsTest(String companyName, String companyDividend, String priceBookCurrentValue) {
+        AcceptCookies acceptCookies = new AcceptCookies(driver);
+        SearchPage searchPage = new SearchPage(driver);
+        SummaryPage summaryPage = new SummaryPage(driver);
+        StatisticsPage statisticsPage = new StatisticsPage(driver);
 
         acceptCookies.clickAgreeCookiesBtn();
         searchPage.setSearchValue(companyName);
         searchPage.selectSearchResult();
-       statisticsPage.openStatisticsPage();
+        statisticsPage.openStatisticsPage();
 
         SoftAssert softAssert = new SoftAssert();
 
         softAssert.assertEquals(summaryPage.getCompanyDividents(), companyDividend);
-        if(companyDividend.contains("N/A")) {
+        if (companyDividend.contains("N/A")) {
             log.info(companyName + " is not giving Dividends");
         }
         softAssert.assertEquals(statisticsPage.getPriceBookValue(), priceBookCurrentValue);
         softAssert.assertAll();
 
-
-
-
-       /* WebElement userNameInput = driver.findElement(By.id("user-name"));
-        userNameInput.click();*/
     }
 
 }
