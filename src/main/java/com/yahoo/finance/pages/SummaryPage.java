@@ -1,9 +1,9 @@
 package com.yahoo.finance.pages;
 
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class SummaryPage extends BasePage {
 
@@ -11,11 +11,9 @@ public class SummaryPage extends BasePage {
     private WebElement dividendAndYieldValue;
 
     public String getCompanyDividents() {
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].scrollIntoView(true);", dividendAndYieldValue);
+        executeOperationWithExplicitWait(10, ExpectedConditions.visibilityOf(dividendAndYieldValue), 4);
         return dividendAndYieldValue.getText();
     }
-
 
     public SummaryPage(WebDriver driver) {
         super(driver);

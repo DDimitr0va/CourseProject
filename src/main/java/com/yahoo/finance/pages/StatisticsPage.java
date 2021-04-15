@@ -1,25 +1,26 @@
 package com.yahoo.finance.pages;
 
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class StatisticsPage extends BasePage {
 
-    @FindBy(xpath = "//span[contains(text(),'Statistics')]")
+    @FindBy(xpath = "//li[@data-test='STATISTICS']")
     private WebElement statisticsButton;
 
     @FindBy(xpath = "//span[(text()='Price/Book')]/../following-sibling::td")
     private WebElement priceBookValue;
 
+
     public void openStatisticsPage() {
+        executeOperationWithExplicitWait(10, ExpectedConditions.visibilityOf(statisticsButton), 4);
         statisticsButton.click();
     }
 
     public String getPriceBookValue() {
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].scrollIntoView(true);", priceBookValue);
+        executeOperationWithExplicitWait(10, ExpectedConditions.visibilityOf(priceBookValue), 4);
         return priceBookValue.getText();
     }
 

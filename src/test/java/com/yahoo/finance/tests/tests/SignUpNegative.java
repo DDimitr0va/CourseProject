@@ -1,8 +1,8 @@
 package com.yahoo.finance.tests.tests;
 
-import com.yahoo.finance.tests.base.TestUtils;
 import com.opencsv.exceptions.CsvException;
 import com.yahoo.finance.pages.*;
+import com.yahoo.finance.tests.base.TestUtils;
 import com.yahoo.finance.utils.CsvReader;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -38,15 +38,13 @@ public class SignUpNegative extends TestUtils {
         populateCreateAccountData.setDayOfBirth(dayOfBirth);
         populateCreateAccountData.setYearOfBirth(yearOfBirth);
 
-
         ValidationMessages validationMessages = new ValidationMessages(driver);
-
         SoftAssert softAssert = new SoftAssert();
 
         softAssert.assertEquals(validationMessages.getEmailErrorMessage(), "This email address is not available for sign up, try something else");
         softAssert.assertEquals(validationMessages.getPasswordErrorMessage(), "Your password isn’t strong enough, try making it longer.");
         softAssert.assertEquals(validationMessages.getPhoneErrorMessage(), "That doesn’t look right, please re-enter your phone number.");
-        softAssert.assertEquals(validationMessages.getBDateErrorMessage(), "That doesn’t look right, please re-enter your birthday.");
+        softAssert.assertEquals(validationMessages.getBirthDateErrorMessage(), "That doesn’t look right, please re-enter your birthday.");
         softAssert.assertAll();
     }
 }

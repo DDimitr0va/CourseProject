@@ -6,7 +6,6 @@ import org.openqa.selenium.support.FindBy;
 
 public class SignInPage extends BasePage {
 
-
     @FindBy(id = "header-signin-link")
     private WebElement signInBtn;
 
@@ -16,10 +15,8 @@ public class SignInPage extends BasePage {
         return new CreateAccountPage(driver);
     }
 
-
     public SignInPage(WebDriver driver) {
         super(driver);
     }
-
 
 }

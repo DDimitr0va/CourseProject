@@ -12,7 +12,7 @@ public class SearchPage extends BasePage {
     @FindBy(id = "result-quotes-0")
     private WebElement selectResult;
 
-    public void setSearchValue(String companyName) {
+    public void setSearchData(String companyName) {
         searchInput.click();
         searchInput.sendKeys(companyName);
     }
@@ -21,7 +21,6 @@ public class SearchPage extends BasePage {
         selectResult.click();
         return new SummaryPage(driver);
     }
-
 
     public SearchPage(WebDriver driver) {
         super(driver);

@@ -1,19 +1,10 @@
 package com.yahoo.finance.pages;
 
-import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.Select;
-
-@Slf4j
 
 public class CreateAccountForm extends BasePage {
-
-    public CreateAccountForm(WebDriver driver) {
-        super(driver);
-    }
-
 
     @FindBy(id = "usernamereg-firstName")
     private WebElement firstNameInput;
@@ -33,7 +24,7 @@ public class CreateAccountForm extends BasePage {
     @FindBy(id = "usernamereg-month")
     private WebElement monthOfBirthDropDown;
 
-    @FindBy(id = "usernamereg-da")
+    @FindBy(id = "usernamereg-day")
     private WebElement dayOfBirthInput;
 
     @FindBy(id = "usernamereg-year")
@@ -41,6 +32,7 @@ public class CreateAccountForm extends BasePage {
 
     @FindBy(id = "usernamereg-freeformGender")
     private WebElement genderInput;
+
 
     public void setFirstName(String fistName) {
         firstNameInput.clear();
@@ -55,7 +47,6 @@ public class CreateAccountForm extends BasePage {
     public void setEmailAddress(String emailAdress) {
         emailAddressInput.clear();
         emailAddressInput.sendKeys(emailAdress);
-        genderInput.click();
     }
 
     public void setPassword(String password) {
@@ -69,51 +60,7 @@ public class CreateAccountForm extends BasePage {
     }
 
     public void setMonthOfBirth(String month) {
-
-        Select drpMonth = new Select(monthOfBirthDropDown);
-
-        switch (month) {
-            case "January":
-                drpMonth.selectByVisibleText("January");
-                //drpMonth.selectByValue("1");
-                break;
-            case "February":
-                drpMonth.selectByVisibleText("February");
-                break;
-            case "March":
-                drpMonth.selectByVisibleText("March");
-                break;
-            case "April":
-                drpMonth.selectByVisibleText("April");
-                break;
-            case "May":
-                drpMonth.selectByVisibleText("May");
-                break;
-            case "June":
-                drpMonth.selectByVisibleText("June");
-                break;
-            case "July":
-                drpMonth.selectByVisibleText("July");
-                break;
-            case "August":
-                drpMonth.selectByVisibleText("August");
-                break;
-            case "September":
-                drpMonth.selectByVisibleText("September");
-                break;
-            case "October":
-                drpMonth.selectByVisibleText("October");
-                break;
-            case "November":
-                drpMonth.selectByVisibleText("November");
-                break;
-            case "December":
-                drpMonth.selectByVisibleText("December");
-                break;
-            default:
-                log.info("Month of birth is not selected");
-                break;
-        }
+        monthOfBirthDropDown.sendKeys(month);
     }
 
     public void setDayOfBirth(String dayOfBirth) {
@@ -127,5 +74,8 @@ public class CreateAccountForm extends BasePage {
         genderInput.click();
     }
 
+    public CreateAccountForm(WebDriver driver) {
+        super(driver);
+    }
 
 }

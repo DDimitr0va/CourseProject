@@ -25,25 +25,23 @@ public class CheckStatisticsForACompanyStock extends TestUtils {
 
     @Test(dataProvider = "company-data")
     public void executeCheckStatisticsTest(String companyName, String companyDividend, String priceBookCurrentValue) {
+
         AcceptCookies acceptCookies = new AcceptCookies(driver);
         SearchPage searchPage = new SearchPage(driver);
         SummaryPage summaryPage = new SummaryPage(driver);
         StatisticsPage statisticsPage = new StatisticsPage(driver);
-
-        acceptCookies.clickAgreeCookiesBtn();
-        searchPage.setSearchValue(companyName);
-        searchPage.selectSearchResult();
-        statisticsPage.openStatisticsPage();
-
         SoftAssert softAssert = new SoftAssert();
 
+        acceptCookies.clickAgreeCookiesBtn();
+        searchPage.setSearchData(companyName);
+        searchPage.selectSearchResult();
         softAssert.assertEquals(summaryPage.getCompanyDividents(), companyDividend);
         if (companyDividend.contains("N/A")) {
             log.info(companyName + " is not giving Dividends");
         }
+        statisticsPage.openStatisticsPage();
         softAssert.assertEquals(statisticsPage.getPriceBookValue(), priceBookCurrentValue);
         softAssert.assertAll();
-
     }
 
 }

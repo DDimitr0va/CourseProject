@@ -4,6 +4,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class AcceptCookies extends BasePage {
 
@@ -13,8 +14,8 @@ public class AcceptCookies extends BasePage {
     public SignInPage clickAgreeCookiesBtn() {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].scrollIntoView(true);", agreeCookiesBtn);
+        executeOperationWithExplicitWait(15, ExpectedConditions.visibilityOf(agreeCookiesBtn), 4);
         agreeCookiesBtn.click();
-
         return new SignInPage(driver);
     }
 

@@ -9,6 +9,7 @@ public class CreateAccountPage extends BasePage {
     @FindBy(id = "createacc")
     private WebElement createAccountBtn;
 
+
     public CreateAccountForm clickCreateAccountBtn() {
         createAccountBtn.click();
         return new CreateAccountForm(driver);
@@ -17,6 +18,5 @@ public class CreateAccountPage extends BasePage {
     public CreateAccountPage(WebDriver driver) {
         super(driver);
     }
-
 
 }
