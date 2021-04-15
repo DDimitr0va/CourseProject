@@ -1,6 +1,7 @@
 package com.yahoo.finance.tests.tests;
 
 import com.opencsv.exceptions.CsvException;
+import com.yahoo.finance.errorMessages.CreateAccountValidation;
 import com.yahoo.finance.pages.*;
 import com.yahoo.finance.tests.base.TestUtils;
 import com.yahoo.finance.utils.CsvReader;
@@ -38,7 +39,7 @@ public class SignUpNegativeData extends TestUtils {
         populateCreateAccountData.setDayOfBirth(dayOfBirth);
         populateCreateAccountData.setYearOfBirth(yearOfBirth);
 
-        ValidationMessages validationMessages = new ValidationMessages(driver);
+        CreateAccountValidation validationMessages = new CreateAccountValidation(driver);
         SoftAssert softAssert = new SoftAssert();
 
         softAssert.assertEquals(validationMessages.getEmailErrorMessage(), "This email address is not available for sign up, try something else");

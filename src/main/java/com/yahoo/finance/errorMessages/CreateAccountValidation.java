@@ -1,13 +1,14 @@
-package com.yahoo.finance.pages;
+package com.yahoo.finance.errorMessages;
 
 
+import com.yahoo.finance.pages.BasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class ValidationMessages extends BasePage {
-    public ValidationMessages(WebDriver driver) {
+public class CreateAccountValidation extends BasePage {
+    public CreateAccountValidation(WebDriver driver) {
         super(driver);
     }
 
