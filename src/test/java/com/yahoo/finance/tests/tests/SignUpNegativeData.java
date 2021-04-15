@@ -10,7 +10,7 @@ import org.testng.asserts.SoftAssert;
 
 import java.io.IOException;
 
-public class SignUpNegative extends TestUtils {
+public class SignUpNegativeData extends TestUtils {
 
     @DataProvider(name = "login-data")
     public static Object[][] dataProviderFromCsvFile() throws IOException, CsvException {
