@@ -5,35 +5,28 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxOptions;
 
 import java.util.concurrent.TimeUnit;
 
 public class DriverFactory {
 
-    private static final String IGNORE_CERTIFICATE = "--ignore-certificate-errors";
+    private static final String START_MAXIMIZED = "--start-maximized";
 
     public static WebDriver getChromeDriver(int wait) {
         ChromeOptions options = new ChromeOptions();
-        options.addArguments(IGNORE_CERTIFICATE);
+        options.addArguments(START_MAXIMIZED);
 
         WebDriverManager.chromedriver().setup();
         WebDriver driver = new ChromeDriver(options);
-        driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(wait, TimeUnit.SECONDS);
-
         return driver;
     }
 
     public static WebDriver getFirefoxDriver(int wait) {
-        FirefoxOptions options = new FirefoxOptions();
-        options.addArguments(IGNORE_CERTIFICATE);
 
         WebDriverManager.firefoxdriver().setup();
-        WebDriver driver = new FirefoxDriver(options);
-        driver.manage().window().maximize();
+        WebDriver driver = new FirefoxDriver();
         driver.manage().timeouts().implicitlyWait(wait, TimeUnit.SECONDS);
-
         return driver;
     }
 }

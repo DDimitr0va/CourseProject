@@ -1,7 +1,7 @@
 package com.yahoo.finance.tests.tests;
 
 import com.opencsv.exceptions.CsvException;
-import com.yahoo.finance.errorMessages.CreateAccountValidation;
+import com.yahoo.finance.validationErrorMessages.CreateAccountValidation;
 import com.yahoo.finance.pages.*;
 import com.yahoo.finance.tests.base.TestUtils;
 import com.yahoo.finance.utils.CsvReader;

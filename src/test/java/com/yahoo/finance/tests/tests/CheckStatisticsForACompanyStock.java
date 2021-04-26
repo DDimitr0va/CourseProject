@@ -7,14 +7,12 @@ import com.yahoo.finance.pages.StatisticsPage;
 import com.yahoo.finance.pages.SummaryPage;
 import com.yahoo.finance.tests.base.TestUtils;
 import com.yahoo.finance.utils.CsvReader;
-import lombok.extern.slf4j.Slf4j;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import java.io.IOException;
 
-@Slf4j
 
 public class CheckStatisticsForACompanyStock extends TestUtils {
 
@@ -35,10 +33,7 @@ public class CheckStatisticsForACompanyStock extends TestUtils {
         acceptCookies.clickAgreeCookiesBtn();
         searchPage.setSearchData(companyName);
         searchPage.selectSearchResult();
-        softAssert.assertEquals(summaryPage.getCompanyDividents(), companyDividend);
-        if (companyDividend.contains("N/A")) {
-            log.info(companyName + " is not giving Dividends");
-        }
+        softAssert.assertEquals(summaryPage.getCompanyDividends(companyName), companyDividend);
         statisticsPage.openStatisticsPage();
         softAssert.assertEquals(statisticsPage.getPriceBookValue(), priceBookCurrentValue);
         softAssert.assertAll();
